@@ -14,9 +14,9 @@ type ClientInterface interface {
 }
 
 type Client struct {
-	host       string
-	secret     string
-	clientName string
+	Host       string
+	Secret     string
+	ClientName string
 }
 
 type GetAuthUrlResponse struct {
@@ -28,13 +28,13 @@ func (client *Client) GetAuthUrl(userId string) (string, error) {
 
 	req, _ := http.NewRequest(
 		http.MethodPost,
-		client.host+"/url",
+		client.Host+"/url",
 		strings.NewReader(
-			"client="+client.clientName+"&client_user_id="+userId,
+			"client="+client.ClientName+"&client_user_id="+userId,
 		),
 	)
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.SetBasicAuth(Username, client.secret)
+	req.SetBasicAuth(Username, client.Secret)
 
 	response, err := http.DefaultClient.Do(req)
 

@@ -27,9 +27,9 @@ func TestClient_GetAuthUrl(t *testing.T) {
 			})
 
 		client := Client{
-			host:       baseHost,
-			secret:     secret,
-			clientName: clientName,
+			Host:       baseHost,
+			Secret:     secret,
+			ClientName: clientName,
 		}
 
 		actualAuthUrl, err := client.GetAuthUrl(userId)
@@ -50,9 +50,9 @@ func TestClient_GetAuthUrl(t *testing.T) {
 			JSON("{}")
 
 		client := Client{
-			host:       baseHost,
-			secret:     secret,
-			clientName: clientName,
+			Host:       baseHost,
+			Secret:     secret,
+			ClientName: clientName,
 		}
 
 		actualAuthUrl, err := client.GetAuthUrl(userId)
@@ -74,9 +74,9 @@ func TestClient_GetAuthUrl(t *testing.T) {
 			BodyString("Server error!")
 
 		client := Client{
-			host:       baseHost,
-			secret:     secret,
-			clientName: clientName,
+			Host:       baseHost,
+			Secret:     secret,
+			ClientName: clientName,
 		}
 
 		actualAuthUrl, err := client.GetAuthUrl(userId)
