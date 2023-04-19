@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -23,16 +24,15 @@ type GetAuthUrlResponse struct {
 	AuthUrl string `json:"authUrl" binding:"required"`
 }
 
-func (client *Client) GetAuthUrl(userId string) (string, error) {
+func (client *Client) GetAuthUrl(userId string, redirectUri string) (string, error) {
 	getAuthUrlResponse := GetAuthUrlResponse{}
 
-	req, _ := http.NewRequest(
-		http.MethodPost,
-		client.Host+"/url",
-		strings.NewReader(
-			"client="+client.ClientName+"&client_user_id="+userId,
-		),
-	)
+	postData := "client=" + url.QueryEscape(client.ClientName) + "&client_user_id=" + url.QueryEscape(userId)
+	if redirectUri != "" {
+		postData += "&redirect_uri=" + url.QueryEscape(redirectUri)
+	}
+
+	req, _ := http.NewRequest(http.MethodPost, client.Host+"/url", strings.NewReader(postData))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.SetBasicAuth(Username, client.Secret)
 
