@@ -3,9 +3,11 @@ package authorizer
 import (
 	"encoding/json"
 	"errors"
+	"github.com/kneu-messenger-pigeon/authorizer/dto"
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 const Username = "pigeon"
@@ -20,12 +22,8 @@ type Client struct {
 	ClientName string
 }
 
-type GetAuthUrlResponse struct {
-	AuthUrl string `json:"authUrl" binding:"required"`
-}
-
-func (client *Client) GetAuthUrl(userId string, redirectUri string) (string, error) {
-	getAuthUrlResponse := GetAuthUrlResponse{}
+func (client *Client) GetAuthUrl(userId string, redirectUri string) (string, time.Time, error) {
+	getAuthUrlResponse := dto.GetAuthUrlResponse{}
 
 	postData := "client=" + url.QueryEscape(client.ClientName) + "&client_user_id=" + url.QueryEscape(userId)
 	if redirectUri != "" {
@@ -50,5 +48,5 @@ func (client *Client) GetAuthUrl(userId string, redirectUri string) (string, err
 		err = errors.New("fail to get auth url")
 	}
 
-	return getAuthUrlResponse.AuthUrl, err
+	return getAuthUrlResponse.AuthUrl, getAuthUrlResponse.ExpireAt, err
 }
