@@ -13,7 +13,7 @@ import (
 const Username = "pigeon"
 
 type ClientInterface interface {
-	GetAuthUrl(userId string, redirectUri string) (string, error)
+	GetAuthUrl(userId string, redirectUri string) (authUrl string, expireAt time.Time, err error)
 }
 
 type Client struct {

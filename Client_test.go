@@ -2,6 +2,7 @@ package authorizer
 
 import (
 	"github.com/h2non/gock"
+	"github.com/kneu-messenger-pigeon/authorizer-client/mocks"
 	"github.com/kneu-messenger-pigeon/authorizer/dto"
 	"github.com/stretchr/testify/assert"
 	"net/url"
@@ -96,4 +97,18 @@ func TestClient_GetAuthUrl(t *testing.T) {
 		assert.Empty(t, expireAt)
 	})
 
+}
+
+func TestIsInterface(t *testing.T) {
+	var client ClientInterface
+
+	t.Run("ClientInterface", func(t *testing.T) {
+		client = &Client{}
+		assert.NotNil(t, client)
+	})
+
+	t.Run("MockClientInterface", func(t *testing.T) {
+		client = mocks.NewClientInterface(t)
+		assert.NotNil(t, client)
+	})
 }
