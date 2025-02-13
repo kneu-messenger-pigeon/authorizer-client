@@ -4,18 +4,18 @@ go 1.23
 
 require (
 	github.com/h2non/gock v1.2.0
-	github.com/kneu-messenger-pigeon/authorizer v0.1.0
-	github.com/stretchr/testify v1.9.0
+	github.com/kneu-messenger-pigeon/authorizer v0.1.1
+	github.com/stretchr/testify v1.10.0
 )
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
 	github.com/h2non/parth v0.0.0-20190131123155-b4df798d6542 // indirect
-	github.com/klauspost/compress v1.17.10 // indirect
-	github.com/kneu-messenger-pigeon/events v0.1.41 // indirect
+	github.com/klauspost/compress v1.17.11 // indirect
+	github.com/kneu-messenger-pigeon/events v0.1.42 // indirect
 	github.com/kr/pretty v0.3.0 // indirect
-	github.com/pierrec/lz4/v4 v4.1.21 // indirect
+	github.com/pierrec/lz4/v4 v4.1.22 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rogpeppe/go-internal v1.8.0 // indirect
 	github.com/segmentio/kafka-go v0.4.47 // indirect
